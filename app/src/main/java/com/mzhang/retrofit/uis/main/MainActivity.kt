@@ -20,8 +20,10 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
         initObserver()
-        createPost()
+//        createPost()
 //        viewModel.getPosts()
+//        viewModel.getEmployees()
+        viewModel.createEmployee("Mark", "Admin")
     }
 
     private fun initObserver() {

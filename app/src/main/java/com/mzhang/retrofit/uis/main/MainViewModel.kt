@@ -8,8 +8,10 @@ import com.mzhang.retrofit.models.Post
 import java.lang.Exception
 import androidx.lifecycle.viewModelScope
 import com.mzhang.retrofit.api.BlogApi
+import com.mzhang.retrofit.models.Employee
 import com.mzhang.retrofit.network.RetrofitInstance
 import kotlinx.coroutines.launch
+import com.google.gson.Gson
 
 private const val TAG = "MainViewModel"
 val api = BlogApi.APIObject.getAPI(RetrofitInstance.getRetrofitInstance())
@@ -46,6 +48,25 @@ class MainViewModel : ViewModel() {
             } finally {
                 _isLoading.value = false
             }
+        }
+    }
+
+    fun getEmployees() {
+        viewModelScope.launch {
+            val fetchedEmployees = api.getEmployees()
+            for (e in fetchedEmployees) {
+                Log.i(TAG, "Got Employees $e")
+            }
+        }
+    }
+
+    fun createEmployee(name: String, role: String) {
+        val e = Employee(name = name, role = role)
+        val jsonString = Gson().toJson(e)
+        Log.i(TAG, "Created jsonString: $jsonString")
+        viewModelScope.launch {
+            val employee = api.createEmployee(e)
+            Log.i(TAG, "Created employee: $employee")
         }
     }
 }

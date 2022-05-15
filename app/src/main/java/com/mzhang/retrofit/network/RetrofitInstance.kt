@@ -10,7 +10,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.*
 
-private const val BASE_URL = "https://jsonplaceholder.typicode.com/"
+//private const val BASE_URL = "https://jsonplaceholder.typicode.com/"
+private const val BASE_URL = "http://192.168.1.92:8080"
 object RetrofitInstance {
     private val client = OkHttpClient.Builder()
         .addInterceptor(HeaderInterceptor())

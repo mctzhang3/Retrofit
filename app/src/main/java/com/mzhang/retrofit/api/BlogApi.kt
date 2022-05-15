@@ -1,5 +1,6 @@
 package com.mzhang.retrofit.api
 
+import com.mzhang.retrofit.models.Employee
 import com.mzhang.retrofit.models.Post
 import com.mzhang.retrofit.models.User
 import retrofit2.Call
@@ -36,6 +37,12 @@ interface BlogApi {
 
     @GET("users/{id}")
     fun getUserViaCallback(@Path("id") userId: Int): Call<User>
+
+    @GET("employees")
+    suspend fun getEmployees(): List<Employee>
+
+    @POST("employees")
+    suspend fun createEmployee(@Body employee: Employee): Employee
 
     object APIObject {
         fun getAPI(retrofit: Retrofit): BlogApi = retrofit.create(BlogApi::class.java)

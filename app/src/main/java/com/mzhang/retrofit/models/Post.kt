@@ -7,6 +7,6 @@ import java.io.Serializable
 @Keep
 data class Post(
     val userId: Int,
-    val id: Int,
+    val id: Int? = null,
     val title: String,
     @Json(name = "body") val content: String): Serializable

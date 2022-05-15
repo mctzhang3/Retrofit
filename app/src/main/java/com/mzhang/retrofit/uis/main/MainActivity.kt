@@ -20,10 +20,10 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
         initObserver()
-//        createPost()
+        createPost()
 //        viewModel.getPosts()
 //        viewModel.getEmployees()
-        viewModel.createEmployee("Mark", "Admin")
+//        viewModel.createEmployee("Mark", "Admin")
     }
 
     private fun initObserver() {
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     // Sample of how to create our own CoroutineScope to make network requests
     private fun createPost() {
         CoroutineScope(Dispatchers.IO).launch {
-            val localNewPost = Post(2, 32, "My post title", "Body of post id #32")
+            val localNewPost = Post(userId = 2, title = "My post title", content = "Body of user id #2")
             val newPost = api.createPost(localNewPost)
             Log.i(TAG, "New post $newPost")
         }
